@@ -1,0 +1,9 @@
+random design ideas
+-------------------
+
+Node
+
+traverse
+collect geometries
+should all nodes have geometries?
+should I have more than hierarchy or only one (the nodes) ?

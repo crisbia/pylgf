@@ -15,6 +15,22 @@ w.setSize(600, 400)
 w.setColor(0.7, 0.7, 0.7)
 
 c1 = Widget(w)
+c1.setPosition(20, 50)
+c1.setSize(300, 300)
+c1.setColor(1, 0.7, 0.7)
+
+c1_1 = Widget(c1)
+c1_1.setSize(100, 100)
+c1_1.setPosition(50, 50)
+
+c1_2 = Widget(c1)
+c1_2.setSize(100, 100)
+c1_2.setPosition(250, 50)
+
+
+def mouse(button, state, x, y):
+    print(button, state, x, y)
+    return None
 
 # The display() method does all the work; it has to call the appropriate
 # OpenGL functions to actually display something.
@@ -54,6 +70,8 @@ glutReshapeWindow(width, height)
 glutDisplayFunc(display)
 
 glutIdleFunc(display)
+
+glutMouseFunc(mouse)
 
 # Run the GLUT main loop until the user closes the window.
 glutMainLoop()

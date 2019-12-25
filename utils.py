@@ -1,6 +1,6 @@
 from OpenGL.GL import *
 
-def square(pos, size):
+def rectangle(pos, size):
     width = size.x
     height = size.y
     # We have to declare the points in this sequence: bottom left, bottom right, top right, top left
@@ -21,3 +21,6 @@ class Vec2:
     def __init__(self, x, y):
         self.x = x
         self.y = y
+    
+    def __add__(self, other):
+        return Vec2(self.x + other.x, self.y + other.y)
