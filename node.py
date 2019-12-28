@@ -25,14 +25,15 @@ class Node:
     def setSize(self, w, h):
         self.size = Vec2(w, h)
 
-    def __toGlobal__(self, local):
-        pos = Vec2(local.x, local.y)
+    def toGlobal(self, local):
+        pos = self.transform.transformPoint(Vec2(local.x, local.y))
         p = self.parent
         while p != None:
-            pos = pos + p.position
+            pos = p.transform.transformPoint(pos)
             p = p.parent
+            
         return pos
 
     # Position is always relative to the parent
-    def getGlobalPosition(self):
-        return self.__toGlobal__(self.position)
+    #def getGlobalPosition(self):
+    #    return self.toGlobal(self.position)

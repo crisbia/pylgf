@@ -56,7 +56,7 @@ class Transform:
         self.rotation = Mat22(a)
         self.translation = Vec2(x, y)
 
-    def transform(self, v):
+    def transformPoint(self, v):
         return self.rotation.mult(v) + self.translation        
 
 
