@@ -6,8 +6,7 @@ class Node:
     def __init__(self, parent = None):
         self.parent = parent
         self.children = None
-        self.setPosition(100, 100)
-        self.setRotation(0)
+        self.transform = Transform(0, 100, 100)
         self.setSize(100, 100)
         if parent != None:
             parent.addChild(self)
@@ -18,10 +17,10 @@ class Node:
         self.children.append(child)
 
     def setPosition(self, x, y):
-        self.position = Vec2(x, y)
+        self.transform.translation = Vec2(x, y)
 
     def setRotation(self, alfa):
-        self.rotation = alfa
+        self.transform.rotation = Mat22(alfa)
 
     def setSize(self, w, h):
         self.size = Vec2(w, h)

@@ -14,11 +14,16 @@ class Widget(Node):
     
     def render(self):
         glColor(self.color.r, self.color.g, self.color.b)
-        glPushMatrix()
-        glTranslate(self.position.x, self.position.y, 0)
-        rectangle(Vec2(0, 0), self.size)
+        #glPushMatrix()
+        #glTranslate(self.transform.translation.x, self.transform.translation.y, 0)
+        # glRotate(self.rotation, 0, 0, 1)
+        p1 = self.transform.transform(Vec2(0, 0))
+        p2 = self.transform.transform(Vec2(self.size.x, 0))
+        p3 = self.transform.transform(Vec2(self.size.x, self.size.y))
+        p4 = self.transform.transform(Vec2(0, self.size.y))
+        lgf_rectangle(p1, p2, p3, p4)
         if self.children != None:
             for w in self.children:
                 w.render()
-        glPopMatrix()
+        #glPopMatrix()
 
