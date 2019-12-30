@@ -6,6 +6,7 @@ class Node:
     def __init__(self, parent = None):
         self.parent = parent
         self.children = None
+        self.inputHandlers = None
         self.transform = Transform(0, 100, 100)
         self.setSize(100, 100)
         if parent != None:
@@ -37,3 +38,26 @@ class Node:
     # Position is always relative to the parent
     #def getGlobalPosition(self):
     #    return self.toGlobal(self.position)
+
+    def handleEvent(self, event):
+
+        # TODO logic to be defined but if a descendant handles this
+        # stop trying
+        if self.children != None:
+            for child in self.children:
+                if child.handleEvent(event):
+                    return True
+
+        # Go through the list of installed handlers. Since more than
+        # one could be interested in this event, don't stop at the first
+        # one that returns True
+        res = False
+        if self.inputHandlers != None:
+            for handler in self.inputHandlers:
+                res = res or handler.handle(event)
+        return res
+
+    def addInputHandler(self, inputHandler):
+        if self.inputHandlers == None:
+            self.inputHandlers = []
+        self.inputHandlers.append(inputHandler)
