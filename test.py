@@ -24,6 +24,10 @@ c1_1 = Widget(c1)
 c1_1.setSize(100, 100)
 c1_1.setPosition(50, 50)
 
+mh = MouseInputNode(c1_1)
+s = c1_1.getSize()
+mh.setSize(s.x, s.y)
+
 MyHandler = type("MyHandler", 
               (), 
               {"handle": lambda self, event: "Handled event!"})
@@ -34,6 +38,7 @@ c1_2 = Widget(c1)
 c1_2.setSize(100, 100)
 c1_2.setPosition(250, 50)
 c1_2.setRotation(math.pi / 6)
+
 
 def mouse(button, state, x, y):
     print(button, state, x, y)

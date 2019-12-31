@@ -18,6 +18,9 @@ class MouseEvent(Event):
     def setPosition(self, x, y):
         self.position = Vec2(x, y)
 
+    def getPosition(self):
+        return Vec2(self.position.x, self.position.y)
+
 class MouseInputHandler(InputHandler):
     def __init__(self, node):
         super().__init__()

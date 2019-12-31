@@ -50,6 +50,14 @@ class Mat22:
             self.col1.x * v.x + self.col2.x * v.y, 
             self.col1.y * v.x + self.col2.y * v.y)
 
+    def transpose(self):
+        t = Mat22(0)
+        t.col1.x =  self.col1.x
+        t.col1.y =  self.col2.x
+        t.col2.x =  self.col1.y
+        t.col2.y =  self.col2.y
+        return t
+
 
 class Transform:
     def __init__(self, a, x, y):
@@ -57,8 +65,13 @@ class Transform:
         self.translation = Vec2(x, y)
 
     def transformPoint(self, v):
-        return self.rotation.mult(v) + self.translation        
+        return self.rotation.mult(v) + self.translation
 
+    def inverse(self):
+        t = Transform(0, 0, 0)
+        t.rotation = self.rotation.transpose()
+        t.translation = Vec2(-self.translation.x, -self.translation.y)
+        return t
 
 class Context:
     __shared_state = {}
