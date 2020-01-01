@@ -7,8 +7,8 @@ class Node:
         self.parent = parent
         self.children = None
         self.inputHandlers = None
-        self.transform = Transform(0, 100, 100)
-        self.setSize(100, 100)
+        self.transform = Transform(0, 0, 0)
+        self.setSize(0, 0)
         if parent != None:
             parent.addChild(self)
     
@@ -18,10 +18,12 @@ class Node:
         self.children.append(child)
 
     def setPosition(self, x, y):
-        self.transform.translation = Vec2(x, y)
+        if self.parent != None:
+            self.transform.translation = Vec2(x, y)
 
     def setRotation(self, alfa):
-        self.transform.rotation = Mat22(alfa)
+        if self.parent != None:
+            self.transform.rotation = Mat22(alfa)
 
     def setSize(self, w, h):
         self.size = Vec2(w, h)
@@ -39,12 +41,16 @@ class Node:
         return pos
 
     def toLocal(self, g):
-        pos = self.transform.inverse().transformPoint(Vec2(g.x, g.y))
-        p = self.parent
+        ancestors = []
+        p = self
         while p != None:
-            pos = p.transform.inverse().transformPoint(pos)
+            ancestors.insert(0, p)
             p = p.parent
-            
+
+        pos = Vec2(g.x, g.y)
+        for p in ancestors:
+            pos = p.transform.invTransformPoint(pos)
+
         return pos
 
     def render(self):

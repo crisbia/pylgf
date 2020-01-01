@@ -11,8 +11,9 @@ from inputhandler import *
 width = 800
 height = 600
 
+# Main widget. It will be a window eventually (no parent)
 w = Widget()
-w.setSize(600, 400)
+w.setSize(width, height)
 w.setColor(0.7, 0.7, 0.7)
 
 c1 = Widget(w)
@@ -24,10 +25,6 @@ c1_1 = Widget(c1)
 c1_1.setSize(100, 100)
 c1_1.setPosition(50, 50)
 
-mh = MouseInputNode(c1_1)
-s = c1_1.getSize()
-mh.setSize(s.x, s.y)
-
 MyHandler = type("MyHandler", 
               (), 
               {"handle": lambda self, event: "Handled event!"})
@@ -37,7 +34,11 @@ c1_1.addInputHandler(MouseInputHandler(c1_1))
 c1_2 = Widget(c1)
 c1_2.setSize(100, 100)
 c1_2.setPosition(250, 50)
-c1_2.setRotation(math.pi / 6)
+c1_2.setRotation(-math.pi / 6)
+
+mh = MouseInputNode(c1_2)
+s = c1_2.getSize()
+mh.setSize(s.x, s.y)
 
 
 def mouse(button, state, x, y):
@@ -58,7 +59,7 @@ def display():
     glViewport(0, 0, width, height)
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    glOrtho(0.0, width, 0.0, height, 0.0, 1.0)
+    glOrtho(0.0, width, height, 0.0, 0.0, 1.0)
     glMatrixMode (GL_MODELVIEW)
     glLoadIdentity()
 

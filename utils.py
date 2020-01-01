@@ -38,6 +38,9 @@ class Vec2:
     def __add__(self, other):
         return Vec2(self.x + other.x, self.y + other.y)
 
+    def __sub__(self, other):
+        return Vec2(self.x - other.x, self.y - other.y)
+
 class Mat22:
     def __init__(self, angle):
         c = math.cos(angle)
@@ -66,6 +69,9 @@ class Transform:
 
     def transformPoint(self, v):
         return self.rotation.mult(v) + self.translation
+
+    def invTransformPoint(self, v):
+        return self.rotation.transpose().mult(v - self.translation)
 
     def inverse(self):
         t = Transform(0, 0, 0)

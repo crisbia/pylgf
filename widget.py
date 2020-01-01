@@ -15,9 +15,9 @@ class Widget(Node):
     def render(self):
         glColor(self.color.r, self.color.g, self.color.b)
         p1 = self.toGlobal(Vec2(0, 0))
-        p2 = self.toGlobal(Vec2(self.size.x, 0))
+        p2 = self.toGlobal(Vec2(0, self.size.y))
         p3 = self.toGlobal(Vec2(self.size.x, self.size.y))
-        p4 = self.toGlobal(Vec2(0, self.size.y))
+        p4 = self.toGlobal(Vec2(self.size.x, 0))
         lgf_rectangle(p1, p2, p3, p4)
         super().render()
 
@@ -29,7 +29,9 @@ class MouseInputNode(InputNode):
         if type(event) != MouseEvent:
             return False
 
-        localPos = self.toLocal(event.getPosition())
+        eventPos = event.getPosition()
+        localPos = self.toLocal(eventPos)
+        print(f"eventPos: {eventPos.x} {eventPos.y}")
         print(f"localPos: {localPos.x} {localPos.y}")
 
         print("handling it!!!")
