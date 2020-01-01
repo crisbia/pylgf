@@ -24,15 +24,17 @@ class Widget(Node):
 class MouseInputNode(InputNode):
     def __init__(self, parent = None):
         super().__init__(parent)
+        self.onPressed = None
+        self.onReleased = None
 
     def handleEvent(self, event):
         if type(event) != MouseEvent:
             return False
 
-        eventPos = event.getPosition()
-        localPos = self.toLocal(eventPos)
-        print(f"eventPos: {eventPos.x} {eventPos.y}")
-        print(f"localPos: {localPos.x} {localPos.y}")
+        # convert the event to coordinates local to the node
+        localPos = self.toLocal(event.getPosition())
+        if localPos.x < 0 or localPos.y < 0 or localPos.x > self.size.x or localPos.y > self.size.y:
+            return False
 
-        print("handling it!!!")
+
         return True

@@ -8,7 +8,7 @@ class InputHandler:
 
 class Event:
     def __init__(self):
-        print("init event")
+        pass
 
 class MouseEvent(Event):
     def __init__(self):

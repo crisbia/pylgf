@@ -32,7 +32,7 @@ MyHandler = type("MyHandler",
 c1_1.addInputHandler(MouseInputHandler(c1_1))
 
 c1_2 = Widget(c1)
-c1_2.setSize(100, 100)
+c1_2.setSize(150, 80)
 c1_2.setPosition(250, 50)
 c1_2.setRotation(-math.pi / 6)
 
