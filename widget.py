@@ -1,5 +1,7 @@
 # base widget class
 
+import copy
+
 from utils import *
 from node import *
 from inputhandler import *
@@ -24,17 +26,38 @@ class Widget(Node):
 class MouseInputNode(InputNode):
     def __init__(self, parent = None):
         super().__init__(parent)
-        self.onPressed = None
-        self.onReleased = None
+        self.state = MouseState()
+
+    def onPressed(self, state):
+        pass
+
+    def onReleased(self, state):
+        pass
 
     def handleEvent(self, event):
+        # if the event is handled by one of the children
+        # just move on
+        if super().handleEvent(event):
+            return True
+
+        # handle only mouse events
         if type(event) != MouseEvent:
             return False
 
         # convert the event to coordinates local to the node
-        localPos = self.toLocal(event.getPosition())
+        localPos = self.toLocal(event.state.position)
         if localPos.x < 0 or localPos.y < 0 or localPos.x > self.size.x or localPos.y > self.size.y:
             return False
 
+        if (event.state.leftButton and not self.state.leftButton) or \
+            (event.state.middleButton and not self.state.middleButton) or \
+            (event.state.rightButton and not self.state.rightButton):
+            self.onPressed(copy.deepcopy(event.state))
 
+        if (not event.state.leftButton and self.state.leftButton) or \
+            (not event.state.middleButton and self.state.middleButton) or \
+            (not event.state.rightButton and self.state.rightButton):
+            self.onReleased(copy.deepcopy(event.state))
+
+        self.state = copy.deepcopy(event.state)
         return True

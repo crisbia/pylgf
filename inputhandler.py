@@ -1,11 +1,5 @@
 from utils import *
 
-class InputHandler:
-    # Return specific info on how the event was handled
-    # or None if not handled
-    def handle(self, event):
-        return None
-
 class Event:
     def __init__(self):
         pass
@@ -13,18 +7,11 @@ class Event:
 class MouseEvent(Event):
     def __init__(self):
         super().__init__()
+        self.state = MouseState()
+
+class MouseState:
+    def __init__(self):
         self.position = Vec2(0, 0)
-
-    def setPosition(self, x, y):
-        self.position = Vec2(x, y)
-
-    def getPosition(self):
-        return Vec2(self.position.x, self.position.y)
-
-class MouseInputHandler(InputHandler):
-    def __init__(self, node):
-        super().__init__()
-        self.node = node # node to which this is attached
-
-    def handle(self, event):
-        return True
+        self.leftButton = False
+        self.middleButton = False
+        self.rightButton = False

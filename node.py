@@ -71,20 +71,6 @@ class Node:
                     return True
         return False
 
-#        # Go through the list of installed handlers. Since more than
-#        # one could be interested in this event, don't stop at the first
-#        # one that returns True
-#        res = False
-#        if self.inputHandlers != None:
-#            for handler in self.inputHandlers:
-#                res = res or handler.handle(event)
-#        return res
-
-    def addInputHandler(self, inputHandler):
-        if self.inputHandlers == None:
-            self.inputHandlers = []
-        self.inputHandlers.append(inputHandler)
-
 class InputNode(Node):
     def __init__(self, parent = None):
         super().__init__(parent)

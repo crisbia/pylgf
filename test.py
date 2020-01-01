@@ -20,6 +20,7 @@ c1 = Widget(w)
 c1.setPosition(20, 50)
 c1.setSize(300, 300)
 c1.setColor(1, 0.7, 0.7)
+#c1.setRotation(math.pi / 64)
 
 c1_1 = Widget(c1)
 c1_1.setSize(100, 100)
@@ -29,23 +30,34 @@ MyHandler = type("MyHandler",
               (), 
               {"handle": lambda self, event: "Handled event!"})
 
-c1_1.addInputHandler(MouseInputHandler(c1_1))
-
 c1_2 = Widget(c1)
 c1_2.setSize(150, 80)
 c1_2.setPosition(250, 50)
 c1_2.setRotation(-math.pi / 6)
 
+def testMousePress(state):
+    print("press called!!!")
+    c1_2.setColor(0, 0, 1)
+
+def testMouseRelease(state):
+    print("release called!!!")
+    c1_2.setColor(1, 0, 0)
+
 mh = MouseInputNode(c1_2)
 s = c1_2.getSize()
 mh.setSize(s.x, s.y)
+mh.onPressed = testMousePress
+mh.onReleased = testMouseRelease
 
 
 def mouse(button, state, x, y):
     print(button, state, x, y)
 
     event = MouseEvent()
-    event.setPosition(x, y)
+    event.state.position = Vec2(x, y)
+    event.state.leftButton = button == GLUT_LEFT_BUTTON and state == GLUT_DOWN
+    event.state.middleButton = button == GLUT_MIDDLE_BUTTON and state == GLUT_DOWN
+    event.state.rightButton = button == GLUT_RIGHT_BUTTON and state == GLUT_DOWN
     print(f"Event handled: {w.handleEvent(event)}")
 
     return None
