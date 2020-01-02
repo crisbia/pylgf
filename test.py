@@ -5,6 +5,7 @@ from OpenGL.GLUT import *
 
 from panel import *
 
+from window import *
 from widget import *
 from canvas import *
 from inputhandler import *
@@ -13,7 +14,7 @@ width = 800
 height = 600
 
 # Main widget. It will be a window eventually (no parent)
-w = Widget()
+w = Window()
 w.name = "w"
 w.setSize(width, height)
 w.setColor(0.7, 0.7, 0.7)
@@ -94,7 +95,7 @@ def display():
 
 glutInit(sys.argv)
 
-glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
+glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH) # | GLUT_BORDERLESS)
 
 glutCreateWindow('pylgf')
 glutPositionWindow(0,0)
