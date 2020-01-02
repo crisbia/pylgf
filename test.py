@@ -14,24 +14,23 @@ height = 600
 
 # Main widget. It will be a window eventually (no parent)
 w = Widget()
+w.name = "w"
 w.setSize(width, height)
 w.setColor(0.7, 0.7, 0.7)
 
 c1 = Widget(w)
+c1.name = "c1"
 c1.setPosition(20, 50)
 c1.setSize(300, 300)
 c1.setColor(1, 0.7, 0.7)
-#c1.setRotation(math.pi / 64)
 
 c1_1 = Widget(c1)
+c1_1.name = "c1_1"
 c1_1.setSize(100, 100)
 c1_1.setPosition(50, 50)
 
-MyHandler = type("MyHandler", 
-              (), 
-              {"handle": lambda self, event: "Handled event!"})
-
 c1_2 = Widget(c1)
+c1_2.name = "c1_2"
 c1_2.setSize(150, 80)
 c1_2.setPosition(70, 50)
 c1_2.setRotation(-math.pi / 6)
@@ -39,28 +38,24 @@ c1_2.setColor(0, 1, 0)
 c1_2.z = -1
 
 can = Canvas(c1)
+can.name = "can"
 can.setSize(c1.getSize().x, c1.getSize().y)
-can.points.append(Vec2(50, 150))
-can.points.append(Vec2(50, 200))
-can.points.append(Vec2(150,250))
-can.points.append(Vec2(250,250))
+can.moveTo(Vec2(200, 200))
 
-def addPoint(state):
-    can.points.append(state.position)
+can.addPoint = lambda state: can.lineTo(state.position)
 
 mh2 = MouseInputNode(can)
-mh2.onPressed = addPoint
-
+mh2.name = "mh2"
+mh2.onPressed = can.addPoint
 
 def testMousePress(state):
-    print("press called!!!")
     c1_2.setColor(0, 0, 1)
 
 def testMouseRelease(state):
-    print("release called!!!")
     c1_2.setColor(0, 1, 0)
 
 mh = MouseInputNode(c1_2)
+mh.name = "mh"
 s = c1_2.getSize()
 mh.setSize(s.x, s.y)
 mh.onPressed = testMousePress

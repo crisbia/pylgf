@@ -27,6 +27,12 @@ def lgf_points(points):
         glVertex2f(p.x, p.y)
     glEnd()
 
+def lgf_line(points):
+    glBegin(GL_LINE_STRIP)
+    for p in points:
+        glVertex2f(p.x, p.y)
+    glEnd()
+
 class Color:
     def __init__(self, r, g, b):
         self.r = r

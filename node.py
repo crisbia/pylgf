@@ -10,6 +10,7 @@ class Node:
         self.transform = Transform(0, 0, 0)
         self.setSize(0, 0)
         self.z = 0
+        self.name = "unnamed"
         if parent != None:
             parent.addChild(self)
     
