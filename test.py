@@ -38,8 +38,6 @@ c1_2.setColor(0, 1, 0)
 c1_2.z = -1
 
 mh1 = MouseInputNode(c1_1)
-c1_1.getSize()
-mh1.setSize(c1_1.getSize().x, c1_1.getSize().y)
 
 def testMousePress(state):
     print("press called!!!")

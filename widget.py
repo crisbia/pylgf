@@ -27,6 +27,9 @@ class MouseInputNode(InputNode):
     def __init__(self, parent = None):
         super().__init__(parent)
         self.state = MouseState()
+        # by default, size it as the parent.
+        if parent != None:
+            self.size = copy.deepcopy(parent.size)
 
     def onPressed(self, state):
         pass
