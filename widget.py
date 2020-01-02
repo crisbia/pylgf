@@ -63,4 +63,6 @@ class MouseInputNode(InputNode):
             self.onReleased(copy.deepcopy(event.state))
 
         self.state = copy.deepcopy(event.state)
+        # position is in node's coordinate
+        self.state.position = copy.deepcopy(localPos)
         return True

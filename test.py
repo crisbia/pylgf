@@ -6,6 +6,7 @@ from OpenGL.GLUT import *
 from panel import *
 
 from widget import *
+from canvas import *
 from inputhandler import *
 
 width = 800
@@ -37,7 +38,19 @@ c1_2.setRotation(-math.pi / 6)
 c1_2.setColor(0, 1, 0)
 c1_2.z = -1
 
-mh1 = MouseInputNode(c1_1)
+can = Canvas(c1)
+can.setSize(c1.getSize().x, c1.getSize().y)
+can.points.append(Vec2(50, 150))
+can.points.append(Vec2(50, 200))
+can.points.append(Vec2(150,250))
+can.points.append(Vec2(250,250))
+
+def addPoint(state):
+    can.points.append(state.position)
+
+mh2 = MouseInputNode(can)
+mh2.onPressed = addPoint
+
 
 def testMousePress(state):
     print("press called!!!")

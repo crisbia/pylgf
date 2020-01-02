@@ -21,6 +21,12 @@ def lgf_rectangle(p1, p2, p3, p4):
     glVertex2f(p4.x, p4.y) # Coordinates for the top left point
     glEnd() # Mark the end of drawing
 
+def lgf_points(points):
+    glBegin(GL_POINTS)
+    for p in points:
+        glVertex2f(p.x, p.y)
+    glEnd()
+
 class Color:
     def __init__(self, r, g, b):
         self.r = r
