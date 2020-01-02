@@ -32,8 +32,14 @@ MyHandler = type("MyHandler",
 
 c1_2 = Widget(c1)
 c1_2.setSize(150, 80)
-c1_2.setPosition(250, 50)
+c1_2.setPosition(70, 50)
 c1_2.setRotation(-math.pi / 6)
+c1_2.setColor(0, 1, 0)
+c1_2.z = -1
+
+mh1 = MouseInputNode(c1_1)
+c1_1.getSize()
+mh1.setSize(c1_1.getSize().x, c1_1.getSize().y)
 
 def testMousePress(state):
     print("press called!!!")
@@ -41,7 +47,7 @@ def testMousePress(state):
 
 def testMouseRelease(state):
     print("release called!!!")
-    c1_2.setColor(1, 0, 0)
+    c1_2.setColor(0, 1, 0)
 
 mh = MouseInputNode(c1_2)
 s = c1_2.getSize()

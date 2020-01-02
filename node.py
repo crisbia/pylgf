@@ -9,6 +9,7 @@ class Node:
         self.inputHandlers = None
         self.transform = Transform(0, 0, 0)
         self.setSize(0, 0)
+        self.z = 0
         if parent != None:
             parent.addChild(self)
     
@@ -55,18 +56,14 @@ class Node:
 
     def render(self):
         if self.children != None:
-            for w in self.children:
+            for w in sorted(self.children, key = lambda c: c.z):
                 w.render()
-
-    # Position is always relative to the parent
-    #def getGlobalPosition(self):
-    #    return self.toGlobal(self.position)
 
     def handleEvent(self, event):
         # TODO logic to be defined but if a descendant handles this
         # stop trying
         if self.children != None:
-            for child in self.children:
+            for child in sorted(self.children, key = lambda c: c.z, reverse = True):
                 if child.handleEvent(event):
                     return True
         return False
