@@ -1,18 +1,7 @@
 from OpenGL.GL import *
 import math
 
-def rectangle(pos, size):
-    width = size.x
-    height = size.y
-    # We have to declare the points in this sequence: bottom left, bottom right, top right, top left
-    glBegin(GL_QUADS) # Begin the sketch
-    glVertex2f(pos.x, pos.y) # Coordinates for the bottom left point
-    glVertex2f(pos.x + width, pos.y) # Coordinates for the bottom right point
-    glVertex2f(pos.x + width, pos.y + height) # Coordinates for the top right point
-    glVertex2f(pos.x, pos.y + height) # Coordinates for the top left point
-    glEnd() # Mark the end of drawing
-
-def lgf_rectangle(p1, p2, p3, p4):
+def lgf_quad(p1, p2, p3, p4):
     # We have to declare the points in this sequence: bottom left, bottom right, top right, top left
     glBegin(GL_QUADS) # Begin the sketch
     glVertex2f(p1.x, p1.y) # Coordinates for the bottom left point
@@ -27,7 +16,7 @@ def lgf_points(points):
         glVertex2f(p.x, p.y)
     glEnd()
 
-def lgf_line(points):
+def lgf_polyline(points):
     glBegin(GL_LINE_STRIP)
     for p in points:
         glVertex2f(p.x, p.y)

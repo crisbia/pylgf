@@ -49,9 +49,9 @@ class Canvas(Node):
         glColor(0, 0, 1)
         glLineWidth(2)
         if self.currentLine != None:
-            lgf_line(self.currentLine.points)
+            lgf_polyline(self.currentLine.points)
         for l in self.lines:
-            lgf_line(l.points)
+            lgf_polyline(l.points)
 
         #glPointSize(5)
         #lgf_points(self.points)

@@ -20,5 +20,5 @@ class Widget(Node):
         p2 = self.toGlobal(Vec2(0, self.size.y))
         p3 = self.toGlobal(Vec2(self.size.x, self.size.y))
         p4 = self.toGlobal(Vec2(self.size.x, 0))
-        lgf_rectangle(p1, p2, p3, p4)
+        lgf_quad(p1, p2, p3, p4)
         super().render()
