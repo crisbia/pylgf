@@ -33,6 +33,12 @@ class MouseInputNode(InputNode):
     def onReleased(self, state):
         pass
 
+    def contains(self, localPoint):
+        if localPoint.x < 0 or localPoint.y < 0 or localPoint.x > self.size.x or localPoint.y > self.size.y:
+            return False
+
+        return True
+
     def handleEvent(self, event):
         print("handleEvent: " + self.name)
 
@@ -47,7 +53,7 @@ class MouseInputNode(InputNode):
 
         # convert the event to coordinates local to the node
         localPos = self.toLocal(event.state.position)
-        if localPos.x < 0 or localPos.y < 0 or localPos.x > self.size.x or localPos.y > self.size.y:
+        if not self.contains(localPos):
             return False
 
         if (event.state.leftButton and not self.state.leftButton) or \
