@@ -9,13 +9,15 @@ from window import *
 from widget import *
 from canvas import *
 from inputhandler import *
+from manager import *
 
 width = 800
 height = 600
 
+manager = GLUTManager()
+
 # Main widget. It will be a window eventually (no parent)
-w = Window()
-w.name = "w"
+w = manager.createWindow("w")
 w.setSize(width, height)
 w.setColor(0.7, 0.7, 0.7)
 
