@@ -8,4 +8,5 @@ from widget import *
 
 class Window(Widget):
     def __init__(self, name):
-        super().__init__(None) 
+        super().__init__(None)
+        self.name = name
