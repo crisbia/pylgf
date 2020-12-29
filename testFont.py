@@ -190,5 +190,6 @@ if __name__ == '__main__':
     gl.glColorMaterial( gl.GL_FRONT_AND_BACK, gl.GL_AMBIENT_AND_DIFFUSE )
     gl.glBlendFunc( gl.GL_SRC_ALPHA, gl.GL_ONE_MINUS_SRC_ALPHA )
     gl.glEnable( gl.GL_TEXTURE_2D )
-    makefont( r"C:\Windows\Fonts\MTCORSVA.TTF", 64 )
+#    makefont( r"C:\Windows\Fonts\MTCORSVA.TTF", 64 )
+    makefont( r"/Library/Fonts/Arial Unicode.ttf", 64 )
     glut.glutMainLoop( )

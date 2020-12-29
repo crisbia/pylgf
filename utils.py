@@ -3,12 +3,12 @@ import math
 
 def lgf_quad(p1, p2, p3, p4):
     # We have to declare the points in this sequence: bottom left, bottom right, top right, top left
-    glBegin(GL_QUADS) # Begin the sketch
+    glBegin(GL_QUADS)
     glVertex2f(p1.x, p1.y) # Coordinates for the bottom left point
     glVertex2f(p2.x, p2.y) # Coordinates for the bottom right point
     glVertex2f(p3.x, p3.y) # Coordinates for the top right point
     glVertex2f(p4.x, p4.y) # Coordinates for the top left point
-    glEnd() # Mark the end of drawing
+    glEnd()
 
 def lgf_points(points):
     glBegin(GL_POINTS)
